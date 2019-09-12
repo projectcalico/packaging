@@ -73,6 +73,15 @@ EOF`
 		    sed -i "s/^export PBR_VERSION=.*$/export PBR_VERSION=${pbr_version}/" debian/rules
 		fi
 
+		if [ ${PKG_NAME} = etcd3-gateway ]; then
+		    pbr_version=`${DOCKER_RUN_RM} -i calico-build/${series} python - <<'EOF'
+import pbr.version
+print pbr.version.VersionInfo('etcd3-gateway').release_string()
+EOF`
+		    # Update PBR_VERSION setting in debian/rules.
+		    sed -i "s/^export PBR_VERSION=.*$/export PBR_VERSION=${pbr_version}/" debian/rules
+		fi
+
 		${DOCKER_RUN_RM} calico-build/${series} dpkg-buildpackage -I -S
 	    done
 

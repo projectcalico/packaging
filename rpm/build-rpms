@@ -27,6 +27,14 @@ print pbr.version.VersionInfo('networking-calico').release_string()
 EOF`
 fi
 
+if [ ${pkg} = etcd3-gateway ]; then
+    # Same for etcd3-gateway.
+    export PBR_VERSION=`python - <<'EOF'
+import pbr.version
+print pbr.version.VersionInfo('etcd3-gateway').release_string()
+EOF`
+fi
+
 mkdir -p /tmp/rpmbuild/BUILD \
          /tmp/rpmbuild/RPMS \
          /tmp/rpmbuild/SOURCES \
@@ -42,7 +50,7 @@ cd /tmp/rpmbuild/SOURCES
 for f in ${repo}/rpm/*; do ln -sf $f; done
 
 case ${pkg} in
-    felix | networking-calico | dnsmasq )
+    felix | networking-calico | dnsmasq | etcd3-gateway )
 	# Infer the version that the spec wants to build.
 	version=`grep Version: $spec | head -1 | awk '{print $2;}'`
 

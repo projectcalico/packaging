@@ -197,8 +197,16 @@ function do_felix {
 }
 
 function do_etcd3gw {
-    pushd ${rootdir}/etcd3gw
-    PKG_NAME=python-etcd3gw ../utils/make-packages.sh rpm
+    # Build etcd3-gateway packages.
+    pushd ${rootdir}
+    rm -rf etcd3-gateway
+    ETCD3GW_REPO=${ETCD3GW_REPO:-https://github.com/neiljerram/etcd3-gateway.git}
+    ETCD3GW_CHECKOUT=${ETCD3GW_CHECKOUT:-packaging}
+    git clone $ETCD3GW_REPO -b $ETCD3GW_CHECKOUT
+    cd etcd3-gateway
+    PKG_NAME=etcd3-gateway \
+	    NAME=etcd3-gateway \
+	    ../utils/make-packages.sh deb rpm
     popd
 }
 
