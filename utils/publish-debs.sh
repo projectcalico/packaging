@@ -6,7 +6,8 @@ test -n "$SECRET_KEY"
 keydir=`mktemp -t -d calico-publish-debs.XXXXXX`
 cp -a $SECRET_KEY ${keydir}/key
 
-docker run --rm -ti -v `pwd`:/code -v ${keydir}:/keydir calico-build/bionic /bin/sh -c "gpg --import --batch < /keydir/key && debsign -kCalico *_*_source.changes"
+# Use '-ktigera' to do a substring match on the key id to match the SECRET_KEY. This will match SECRET_KEY if a @tigera.io email was used for the key.
+docker run --rm -ti -v `pwd`:/code -v ${keydir}:/keydir calico-build/bionic /bin/sh -c "gpg --import --batch < /keydir/key && debsign -ktigera *_*_source.changes"
 for series in trusty xenial bionic; do
     # Get the packages and versions that already exist in the PPA, so we can avoid
     # uploading the same package and version as already exist.  (As they would be rejected
