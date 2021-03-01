@@ -93,7 +93,7 @@ Published column.
 
 We build and publish packages for these platforms:
 
--  Ubuntu 14.04 (Trusty), 16.04 (Xenial) and 18.04 (Bionic).  The
+-  Ubuntu 14.04 (Trusty), 16.04 (Xenial), 18.04 (Bionic), and 20.04 (Focal).  The
    hosting for these packages is in PPAs at
    https://launchpad.net/~project-calico.
 
