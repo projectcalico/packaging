@@ -3,6 +3,7 @@ set -x
 set -e
 
 apt-get update
+DEBIAN_FRONTEND=noninteractive \
 apt-get install -y build-essential  \
                    devscripts \
                    debhelper \
@@ -21,4 +22,9 @@ apt-get install -y build-essential  \
                    nettle-dev \
                    m4 \
                    texinfo
+
+if [[ "${STREAM}" == focal ]]; then
+	apt-get install -y dh-python
+fi
+
 apt-get clean -y

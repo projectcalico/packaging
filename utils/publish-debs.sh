@@ -18,7 +18,7 @@ else
 fi
 docker run --rm ${interactive} -v `pwd`:/code -v ${keydir}:/keydir calico-build/bionic /bin/sh -c "gpg --import --batch < /keydir/key && debsign -k'*@' *_*_source.changes"
 
-for series in trusty xenial bionic; do
+for series in trusty xenial bionic focal; do
     # Get the packages and versions that already exist in the PPA, so we can avoid
     # uploading the same package and version as already exist.  (As they would be rejected
     # anyway by Launchpad.)
