@@ -28,8 +28,10 @@ blocks:
         - name: 'v3.15.5'
           commands:
             - export VERSION=v3.15.5
+            - export PACKAGE_ETCD3GW=true
             - make release-publish
         - name: 'v3.15.5-python2'
           commands:
             - export VERSION=v3.15.5-python2
+            - export PACKAGE_ETCD3GW=true
             - make release-publish
