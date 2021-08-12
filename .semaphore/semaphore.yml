@@ -25,18 +25,13 @@ blocks:
   - name: 'Packaging'
     task:
       jobs:
-        - name: 'v3.19.0'
+        - name: 'v3.19.2'
           commands:
-            - export VERSION=v3.19.0
+            - export VERSION=v3.19.2
             - export PACKAGE_ETCD3GW=true
             - make release-publish
-        - name: 'v3.19.0-python2'
+        - name: 'v3.19.2-python2'
           commands:
-            - export VERSION=v3.19.0
+            - export VERSION=v3.19.2
             - export PACKAGE_ETCD3GW=true
-            - make release-publish
-        - name: 'Previous release branch'
-          commands:
-            - export REPO_NAME=calico-previous
-            - export VERSION=release-v3.15
             - make release-publish
