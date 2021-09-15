@@ -36,7 +36,7 @@ if [ "${SEMAPHORE_GIT_PR_NUMBER}${SEMAPHORE_GIT_BRANCH}" = master -o -z "${SEMAP
 else
     # For Semaphore building a PR or a branch other than master, build
     # packages but do not publish them.
-    : ${STEPS:=bld_images net_cal felix etcd3gw dnsmasq nettle}
+    : ${STEPS:=bld_images net_cal felix etcd3gw dnsmasq nettle ${pub_steps}}
 fi
 
 function require_version {
