@@ -25,13 +25,13 @@ blocks:
   - name: 'Packaging'
     task:
       jobs:
-        - name: 'v3.20.1'
+        - name: 'v3.20.2'
           commands:
-            - export VERSION=v3.20.1
+            - export VERSION=v3.20.2
             - export PACKAGE_ETCD3GW=true
             - make release-publish
-        - name: 'v3.20.1-python2'
+        - name: 'v3.20.2-python2'
           commands:
-            - export VERSION=v3.20.1
+            - export VERSION=v3.20.2
             - export PACKAGE_ETCD3GW=true
             - make release-publish
